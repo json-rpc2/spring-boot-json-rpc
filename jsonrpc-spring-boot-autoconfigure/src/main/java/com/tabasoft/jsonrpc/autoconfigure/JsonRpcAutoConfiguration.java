@@ -1,12 +1,15 @@
 package com.tabasoft.jsonrpc.autoconfigure;
 
-import com.tabasoft.jsonrpc.core.service.JsonRpcServiceRegistrar;
+import com.tabasoft.jsonrpc.core.service.JsonRpcContext;
+import com.tabasoft.jsonrpc.core.service.JsonRpcHandler;
+import com.tabasoft.jsonrpc.core.service.impl.JsonRpcContextImpl;
 import com.tabasoft.jsonrpc.core.service.impl.JsonRpcServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,12 +22,19 @@ public class JsonRpcAutoConfiguration implements BeanFactoryPostProcessor {
 
     @Bean
     JsonRpcServiceBeanPostProcessor jsonRpcServiceBeanPostProcessor() {
-        return new JsonRpcServiceBeanPostProcessor(jsonRpcHandlerService());
+        return new JsonRpcServiceBeanPostProcessor(jsonRpcContext());
     }
 
     @Bean
-    JsonRpcServiceRegistrar jsonRpcHandlerService() {
-        return new JsonRpcServiceImpl();
+    @ConditionalOnMissingBean
+    JsonRpcHandler jsonRpcHandlerService() {
+        return new JsonRpcServiceImpl(jsonRpcContext());
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    JsonRpcContext jsonRpcContext() {
+        return new JsonRpcContextImpl();
     }
 
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {

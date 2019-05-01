@@ -1,12 +1,12 @@
 package com.tabasoft.jsonrpc.core.service;
 
-import com.tabasoft.jsonrpc.core.model.RpcRequestEntity;
-import com.tabasoft.jsonrpc.core.model.RpcResponseEntity;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 
-import java.util.Collection;
+import java.io.BufferedReader;
 
 public interface JsonRpcHandler {
-    RpcResponseEntity handleRequest(RpcRequestEntity request);
+    String handleRequest(BufferedReader requestReader);
 
-    Collection<RpcResponseEntity> handleRequest(Collection<RpcRequestEntity> request);
+    String handleRequest(JsonNode node) throws JsonProcessingException;
 }

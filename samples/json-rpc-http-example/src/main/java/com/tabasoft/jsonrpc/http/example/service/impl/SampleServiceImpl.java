@@ -9,4 +9,9 @@ public class SampleServiceImpl {
     public String getNames(String name) {
         return name + "s";
     }
+
+    @JsonRpcMethod(name = "sample.addName", description = "method for do something")
+    public String addName(String name) {
+        return name + "sadf";
+    }
 }

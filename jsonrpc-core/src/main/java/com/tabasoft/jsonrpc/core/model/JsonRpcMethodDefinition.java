@@ -13,5 +13,6 @@ public class JsonRpcMethodDefinition {
     private List<JsonRpcParameter> parameters;
     private Object service;
     private Method javaMethod;
+    private String[] parameterNames;
     private String description;
 }
