@@ -16,6 +16,18 @@
         <maven.compiler.target>11</maven.compiler.target>
         <spring-context.version>5.1.6.RELEASE</spring-context.version>
     </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>4.3.0</version>
+                <configuration>
+                    <repoToken>rk8I3sTfedaJEhDpxUmagRHiJmN9RGLRN</repoToken>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <dependencyManagement>
         <dependencies>
             <dependency>
