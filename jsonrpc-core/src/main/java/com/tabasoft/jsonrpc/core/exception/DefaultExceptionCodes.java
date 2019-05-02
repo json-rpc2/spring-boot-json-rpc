@@ -4,6 +4,10 @@ package com.tabasoft.jsonrpc.core.exception;
  * Default exception codes defined in https://www.jsonrpc.org/specification
  */
 public class DefaultExceptionCodes {
+    private DefaultExceptionCodes() {
+
+    }
+
     public static int PARSE_ERROR = -32700;
     public static int INVALID_REQUEST = -32600;
     public static int METHOD_NOT_FOUND = -32601;

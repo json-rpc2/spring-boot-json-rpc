@@ -46,6 +46,9 @@ public class JsonRpcContextImpl implements JsonRpcContext {
         var jsonRpcMethodAnnotationProperties = method.getAnnotation(JsonRpcMethod.class);
         var nameFromAnnotation = jsonRpcMethodAnnotationProperties.name();
         var name = nameFromAnnotation.isEmpty() ? method.getName() : nameFromAnnotation;
+        if (this.methods.containsKey(name)) {
+            throw new RpcInitializationException(String.format("Detected duplicated method name %s", name));
+        }
         logger.debug("Registering method {}", name);
         var parameters = Arrays.stream(method.getParameters()).map(this::toJsonRpcParameter).collect(Collectors.toList());
         var discoverer = new DefaultParameterNameDiscoverer();
@@ -58,10 +61,6 @@ public class JsonRpcContextImpl implements JsonRpcContext {
                 .description(jsonRpcMethodAnnotationProperties.description())
                 .parameterNames(discoverer.getParameterNames(method))
                 .build();
-        if (this.methods.containsKey(name)) {
-            throw new RpcInitializationException(String.format("Detected duplicated method name %s", name));
-        }
-
         this.methods.put(name, methodDefinition);
     }
 

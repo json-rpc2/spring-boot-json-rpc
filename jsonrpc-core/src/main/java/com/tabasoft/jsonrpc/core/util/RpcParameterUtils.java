@@ -14,7 +14,11 @@ import java.util.ArrayList;
 /**
  * Utility class for working with RPC parameters
  */
-public class RpcParameterUtils {
+public final class RpcParameterUtils {
+
+    private RpcParameterUtils() {
+
+    }
 
     /**
      * Get RPC method parameters as array in sequence which must be same as java method's parameters sequence
