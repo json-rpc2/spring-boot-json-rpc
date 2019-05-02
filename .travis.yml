@@ -1,6 +1,9 @@
 language: java
 jdk:
   - oraclejdk11
-  -
+
 after_success:
+  - jdk_switcher use oraclejdk11
+  - export JAVA_HOME=$HOME/oraclejdk11
+  - $TRAVIS_BUILD_DIR/install-jdk.sh --install oraclejdk11 --target $JAVA_HOME
   - mvn clean test jacoco:report coveralls:report
