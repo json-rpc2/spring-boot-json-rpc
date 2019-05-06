@@ -1,6 +1,6 @@
 package com.tabasoft.jsonrpc.core.service;
 
-import com.tabasoft.jsonrpc.core.model.JsonRpcMethodDefinition;
+import com.tabasoft.jsonrpc.core.model.configuration.JsonRpcMethodDefinition;
 
 public interface JsonRpcContext {
     void registerService(Object bean);

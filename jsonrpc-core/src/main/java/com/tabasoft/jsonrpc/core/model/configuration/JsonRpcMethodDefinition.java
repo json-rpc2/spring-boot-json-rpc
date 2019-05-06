@@ -1,4 +1,4 @@
-package com.tabasoft.jsonrpc.core.model;
+package com.tabasoft.jsonrpc.core.model.configuration;
 
 import lombok.Builder;
 import lombok.Data;

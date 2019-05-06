@@ -1,5 +1,6 @@
-package com.tabasoft.jsonrpc.core.model;
+package com.tabasoft.jsonrpc.core.model.response;
 
+import com.tabasoft.jsonrpc.core.model.response.RpcErrorEntity;
 import lombok.Builder;
 import lombok.Data;
 

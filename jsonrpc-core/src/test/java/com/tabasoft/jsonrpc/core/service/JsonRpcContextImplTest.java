@@ -1,7 +1,7 @@
 package com.tabasoft.jsonrpc.core.service;
 
 import com.tabasoft.jsonrpc.core.exception.RpcInitializationException;
-import com.tabasoft.jsonrpc.core.model.JsonRpcMethodDefinition;
+import com.tabasoft.jsonrpc.core.model.configuration.JsonRpcMethodDefinition;
 import com.tabasoft.jsonrpc.core.service.impl.JsonRpcContextImpl;
 import com.tabasoft.jsonrpc.schema.annotation.JsonRpcMethod;
 import org.junit.jupiter.api.Assertions;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.lang.reflect.Field;
 import java.util.Map;
 
 @ExtendWith(MockitoExtension.class)

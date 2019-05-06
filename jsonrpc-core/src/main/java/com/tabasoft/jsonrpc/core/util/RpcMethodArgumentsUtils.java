@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tabasoft.jsonrpc.core.exception.DefaultExceptionCodes;
 import com.tabasoft.jsonrpc.core.exception.DefaultExceptionMessages;
 import com.tabasoft.jsonrpc.core.exception.RpcException;
-import com.tabasoft.jsonrpc.core.model.JsonRpcMethodDefinition;
+import com.tabasoft.jsonrpc.core.model.configuration.JsonRpcMethodDefinition;
 
 import java.util.ArrayList;
 
@@ -14,9 +14,9 @@ import java.util.ArrayList;
 /**
  * Utility class for working with RPC parameters
  */
-public final class RpcParameterUtils {
+public final class RpcMethodArgumentsUtils {
 
-    private RpcParameterUtils() {
+    private RpcMethodArgumentsUtils() {
 
     }
 
@@ -27,7 +27,7 @@ public final class RpcParameterUtils {
      * @param methodDefinition definition of JSON RPC method. Must contain {@link JsonRpcMethodDefinition#getParameterNames()}
      * @return RPC Parameters
      */
-    public static Object[] getRpcParameters(JsonNode parametersNode, JsonRpcMethodDefinition methodDefinition) {
+    public static Object[] getRpcArguments(JsonNode parametersNode, JsonRpcMethodDefinition methodDefinition) {
         var mapper = new ObjectMapper();
         var methodParameters = methodDefinition.getJavaMethod().getParameters();
         var parameterValues = new ArrayList<Object>();

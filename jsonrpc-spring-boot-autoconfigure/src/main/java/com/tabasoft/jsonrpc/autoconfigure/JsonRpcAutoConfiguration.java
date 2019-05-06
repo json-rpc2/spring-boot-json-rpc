@@ -2,8 +2,10 @@ package com.tabasoft.jsonrpc.autoconfigure;
 
 import com.tabasoft.jsonrpc.core.service.JsonRpcContext;
 import com.tabasoft.jsonrpc.core.service.JsonRpcHandler;
+import com.tabasoft.jsonrpc.core.service.RpcMethodInvoker;
 import com.tabasoft.jsonrpc.core.service.impl.JsonRpcContextImpl;
 import com.tabasoft.jsonrpc.core.service.impl.JsonRpcServiceImpl;
+import com.tabasoft.jsonrpc.core.service.impl.RpcMethodInvokerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -28,13 +30,20 @@ public class JsonRpcAutoConfiguration implements BeanFactoryPostProcessor {
     @Bean
     @ConditionalOnMissingBean
     JsonRpcHandler jsonRpcHandlerService() {
-        return new JsonRpcServiceImpl(jsonRpcContext());
+        return new JsonRpcServiceImpl(jsonRpcContext(), rpcMethodInvoker());
     }
 
     @Bean
     @ConditionalOnMissingBean
     JsonRpcContext jsonRpcContext() {
         return new JsonRpcContextImpl();
+    }
+
+
+    @Bean
+    @ConditionalOnMissingBean
+    RpcMethodInvoker rpcMethodInvoker() {
+        return new RpcMethodInvokerImpl();
     }
 
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {

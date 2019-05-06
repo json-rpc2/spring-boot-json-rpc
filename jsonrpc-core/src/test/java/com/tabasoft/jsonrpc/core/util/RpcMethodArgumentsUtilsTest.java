@@ -2,13 +2,13 @@ package com.tabasoft.jsonrpc.core.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tabasoft.jsonrpc.core.exception.RpcException;
-import com.tabasoft.jsonrpc.core.model.JsonRpcMethodDefinition;
+import com.tabasoft.jsonrpc.core.model.configuration.JsonRpcMethodDefinition;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-public class RpcParameterUtilsTest {
+public class RpcMethodArgumentsUtilsTest {
 
     @Test
     void whenParamsIsArray_thenPlaceParametersPositionally() throws IOException {
@@ -19,7 +19,7 @@ public class RpcParameterUtilsTest {
                 .javaMethod(TestRpcResource.class.getMethods()[0])
                 .parameterNames(new String[]{"a", "b"})
                 .build();
-        var result = RpcParameterUtils.getRpcParameters(node, rpcMethodDefinition);
+        var result = RpcMethodArgumentsUtils.getRpcArguments(node, rpcMethodDefinition);
         Assertions.assertArrayEquals(result, new Object[]{"a", 3L});
     }
 
@@ -32,7 +32,7 @@ public class RpcParameterUtilsTest {
                 .parameterNames(new String[]{"a", "b"})
                 .javaMethod(TestRpcResource.class.getMethods()[0])
                 .build();
-        Assertions.assertThrows(RpcException.class, () -> RpcParameterUtils.getRpcParameters(node, rpcMethodDefinition));
+        Assertions.assertThrows(RpcException.class, () -> RpcMethodArgumentsUtils.getRpcArguments(node, rpcMethodDefinition));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class RpcParameterUtilsTest {
                 .parameterNames(new String[]{"a", "b"})
                 .javaMethod(TestRpcResource.class.getMethods()[0])
                 .build();
-        Assertions.assertThrows(RpcException.class, () -> RpcParameterUtils.getRpcParameters(node, rpcMethodDefinition));
+        Assertions.assertThrows(RpcException.class, () -> RpcMethodArgumentsUtils.getRpcArguments(node, rpcMethodDefinition));
     }
 
 
@@ -57,7 +57,7 @@ public class RpcParameterUtilsTest {
                 .parameterNames(new String[]{"a", "b"})
                 .javaMethod(TestRpcResource.class.getMethods()[0])
                 .build();
-        var result = RpcParameterUtils.getRpcParameters(node, rpcMethodDefinition);
+        var result = RpcMethodArgumentsUtils.getRpcArguments(node, rpcMethodDefinition);
         Assertions.assertArrayEquals(result, new Object[]{"test", 2L});
     }
 
